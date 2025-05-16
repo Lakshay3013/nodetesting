@@ -1,0 +1,285 @@
+<%- include ('../partials/master') -%>
+
+<!-- ======= Header ======= -->
+<%- include ('../partials/header') -%>
+
+<!-- ======= Sidebar ======= -->
+<%- include ('../partials/sidebar') -%>
+
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Communication</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Communication</li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="section">
+    <form method="POST" action="/administration/create-client" id="add-org-form" enctype="multipart/form-data">
+      <input type="hidden" name="_token" value="Gkq6yH0b18mFmuKPnpUFb360y2LDoDahTIKWTC1z">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body pt-3">
+
+              <!-- Reduced Tabs -->
+              <ul class="nav nav-tabs border-bottom mb-4" id="commTabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#settings">Settings & Events</a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#schedule">Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#templates">Templates & Channel</a></li>
+                <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#preview_logs">Preview & Logs</a></li>
+              </ul>
+
+              <div class="tab-content" id="commTabsContent">
+
+                <!-- Settings & Events Tab -->
+                <div class="tab-pane fade show active" id="settings">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                        <i class="bi bi-gear-fill me-2"></i> General Settings & Event Triggers
+                      </h5>
+                      <hr>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="form-label fw-semibold">Enable Communication</label>
+                          <select class="form-select" name="communication_enabled">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                          </select>
+                        </div>
+                       
+                      </div>
+
+                      <div class="row g-3 mt-4">
+                        <div class="col-md-4">
+                          <label class="form-label fw-bold">Leave Management</label>
+                          <div class="form-check"><input class="form-check-input" type="checkbox" name="events[]" value="leave_approved" checked> Leave Approved</div>
+                          <div class="form-check"><input class="form-check-input" type="checkbox" name="events[]" value="leave_rejected"> Leave Rejected</div>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label fw-bold">Attendance</label>
+                          <div class="form-check"><input class="form-check-input" type="checkbox" name="events[]" value="daily_attendance" checked> Daily Attendance</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <!-- Schedule -->
+                  <div class="tab-pane fade" id="schedule">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                          <i class="bi bi-clock-fill me-2"></i> Alert Schedule
+                        </h5>
+                      <p class="text-muted mb-3">This setting controls when alerts are sent. If an event has its own schedule defined, that schedule will be used. Otherwise, the global schedule set here will be applied</p>
+
+                        <hr>
+                        <div class="row g-3">
+                          <div class="col-md-4">
+                            <label class="form-label fw-semibold">Send Timing</label>
+                            <select class="form-select" name="timing_type">
+                              <option value="immediate">Immediately</option>
+                              <option value="delayed">After Delay</option>
+                              <option value="scheduled">At Specific Time</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label fw-semibold">Delay (minutes)</label>
+                            <input type="number" class="form-control" name="delay_minutes" placeholder="e.g. 10">
+                          </div>
+                          <div class="col-md-4">
+                            <label class="form-label fw-semibold">Scheduled Time</label>
+                            <input type="time" class="form-control" name="scheduled_time">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- Templates & Schedule Tab -->
+                <div class="tab-pane fade" id="templates">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                        <i class="bi bi-chat-dots-fill me-2"></i> Templates & Channels
+                      </h5>
+                      <p class="text-muted mb-3">Enable channels and customize the message template for each event.</p>
+                      <hr>
+                      <% const events = ['leave_approved', 'leave_rejected', 'daily_attendance']; %>
+                      <div class="table-responsive">
+                        <table class="table table-bordered align-middle text-center">
+                          <thead class="table-light">
+                            <tr>
+                              <th class="text-start">Event</th>
+                              <th>Email</th>
+                              <th>SMS</th>
+                              <th>WhatsApp</th>
+                              <th>Push</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% events.forEach(event => { %>
+                              <tr>
+                                <td class="text-start fw-semibold text-capitalize">
+                                  <%= event.replaceAll('_', ' ') %>
+                                </td>
+                                <% ['email', 'sms', 'whatsapp', 'push'].forEach(channel => { %>
+                                  <td>
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+                                      <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="channel[<%= event %>][<%= channel %>]">
+                                      </div>
+                                      <button type="button" class="btn btn-sm btn-outline-primary rounded-circle" title="Edit <%= channel %> template" data-bs-toggle="collapse" data-bs-target="#tpl_<%= event %>_<%= channel %>">
+                                        <i class="bi bi-pencil"></i>
+                                      </button>
+                                    </div>
+                                  </td>
+                                <% }) %>
+                              </tr>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                      <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                        <i class="bi bi-chat-dots-fill me-2"></i> Schedule Event
+                      </h5>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">Send Timing</label>
+                          <select class="form-select" name="timing_type">
+                            <option value="immediate">Immediately</option>
+                            <option value="delayed">After Delay</option>
+                            <option value="scheduled">At Specific Time</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">Delay (minutes)</label>
+                          <input type="number" class="form-control" name="delay_minutes" placeholder="e.g. 10">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">Scheduled Time</label>
+                          <input type="time" class="form-control" name="scheduled_time">
+                        </div>
+                      </div>
+
+                      <% events.forEach(event => { %>
+                        <% ['email', 'sms', 'whatsapp', 'push'].forEach(channel => { %>
+                          <div class="collapse mt-3" id="tpl_<%= event %>_<%= channel %>">
+                            <div class="card border-start border-info shadow-sm rounded-3 mb-3">
+                              <div class="card-body">
+                                <h6 class="text-primary fw-bold mb-2">
+                                  <i class="bi bi-chat-dots me-1"></i> <%= event.replaceAll('_', ' ') %> - <%= channel.toUpperCase() %> Template
+                                </h6>
+                                <hr class="form-devider"/>
+                                <% if (channel === 'email') { %>
+                                  <div class="mb-3">
+                                    <label class="form-label">To</label>
+                                    <input type="text" class="form-control" name="template[<%= event %>][<%= channel %>][to]" placeholder="e.g. {{email}}">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label">CC</label>
+                                    <input type="text" class="form-control" name="template[<%= event %>][<%= channel %>][cc]" placeholder="e.g. {{admin_email}}">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" name="template[<%= event %>][<%= channel %>][subject]" value="Your leave status update">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label">Body</label>
+                                    <textarea class="form-control" rows="4" name="template[<%= event %>][<%= channel %>][body]">Hi {{name}}, your <%= event.replaceAll('_', ' ') %> has been processed.</textarea>
+                                  </div>
+                                <% } else if (channel === 'push') { %>
+                                  <div class="row g-3">
+                                    <div class="col-md-6">
+                                      <label class="form-label">Push Title (Android)</label>
+                                      <input type="text" class="form-control" name="template[<%= event %>][push][android_title]" value="Leave Approved">
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label class="form-label">Push Title (iOS)</label>
+                                      <input type="text" class="form-control" name="template[<%= event %>][push][ios_title]" value="Leave Approved">
+                                    </div>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label">Body</label>
+                                    <textarea class="form-control" rows="4" name="template[<%= event %>][<%= channel %>][body]">Your leave status has been updated.</textarea>
+                                  </div>
+                                <% } else { %>
+                                  <div class="mb-3">
+                                    <label class="form-label">Body</label>
+                                    <textarea class="form-control" rows="4" name="template[<%= event %>][<%= channel %>][body]">Your <%= event.replaceAll('_', ' ') %> has been processed.</textarea>
+                                  </div>
+                                <% } %>
+                              </div>
+                            </div>
+                          </div>
+                        <% }) %>
+                      <% }) %>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Preview & Logs Tab -->
+                <div class="tab-pane fade" id="preview_logs">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                        <i class="bi bi-send-check-fill me-2"></i> Send Test Alert & Logs
+                      </h5>
+                      <hr>
+
+                      <!-- Test Alert Section -->
+                      <h6 class="text-info">Test Alert</h6>
+                      <div class="row g-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Event</label>
+                          <select class="form-select" name="test_event">
+                            <option value="leave_approved">Leave Approved</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Send To</label>
+                          <input type="email" class="form-control" name="test_email" placeholder="Enter recipient email">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center">
+                          <button type="button" class="btn btn-success">Send Test</button>
+                        </div>
+                      </div>
+                      <hr>
+
+                      <!-- Logs Section -->
+                      <h6 class="text-info mt-4">Activity Logs</h6>
+                      <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Event</th>
+                              <th>Status</th>
+                              <th>Timestamp</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- Logs data will go here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div> <!-- End of tab-content -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<%- include ('../partials/footer') -%>

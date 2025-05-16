@@ -1,0 +1,412 @@
+<%- include ('../partials/master') -%>
+
+  <!-- ======= Header ======= -->
+  <%- include ('../partials/header') -%>
+
+  <!-- ======= Sidebar ======= -->
+  <%- include ('../partials/sidebar') -%>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Onboard Client</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Onboard Client</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+  <section class="section">
+  <form method="POST" action="/administration/create-client" accept-charset="UTF-8" class="" id="add-org-form" enctype="multipart/form-data"><input name="_token" type="hidden" value="Gkq6yH0b18mFmuKPnpUFb360y2LDoDahTIKWTC1z">
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+  <h5 class="card-title">Organization Information</h5>
+ <hr>
+  <div class="row g-3">
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label required"> Name </label>
+      <input class="form-control" id="org_name" placeholder="Enter Name" name="name" type="text">
+    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+    
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <label class="form-label"> Employee Strength </label>
+      <select class="form-select" name="employee_strength">
+        <option value="">--Select--</option>
+        <% adminDropDown?.employeeRanges?.forEach(option => { %>
+          <option value="<%= option.id %>" ><%= option.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label required"> Email </label>
+      <input class="form-control" id="org_email" placeholder="Enter Email" name="email" type="email">
+    </div>
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label required"> Phone </label>
+      <input class="form-control" id="org_phone" placeholder="Enter Phone" name="phone" type="number">
+    </div>
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label required">Industry</label>
+      <select class="form-select" name="industry_type">
+        <option value="">--Select--</option>
+        <% adminDropDown?.industryTypes?.forEach(option => { %>
+          <option value="<%= option.id %>" ><%= option.name %></option>
+        <% }); %>
+      </select>
+       
+    </div>
+   
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label required">Country</label>
+      <select class="form-select" name="country">
+        <option value="">--Select--</option>
+        <% adminDropDown?.countries?.forEach(option => { %>
+          <option value="<%= option.id %>" ><%= option.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label"> State </label>
+      <input class="form-control" id="state" placeholder="Enter State" name="state" type="text">
+    </div>
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label"> City </label>
+      <input class="form-control" id="city" placeholder="Enter City" name="city" type="text">
+    </div>
+    <div class="col-md-4 col-sm-3 col-xs-12">
+      <label class="form-label"> Address </label>
+      <input class="form-control" id="address" placeholder="Enter Address" name="address" type="text">
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <label class="form-label required">Timezone</label>
+      <select class="form-select" name="time_zone">
+        <option value="">--Select--</option>
+        <% adminDropDown?.timeZones?.forEach(option => { %>
+          <option value="<%= option.id %>" ><%= option.name %></option>
+        <% }); %>
+      </select>
+      
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <label class="form-label required">Status</label>
+      <select class="form-select" name="is_active"><option selected="selected" value="">--Select--</option><option value="true">Active</option><option value="false">Inactive</option></select>                             
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+  <h5 class="card-title">Employee ID Configuration</h5>
+  <small>Set rules to auto-generate unique Employee IDs for your organization. Customize prefix, starting number, and format.</small>
+  <hr>
+
+  <div wire:snapshot="{&quot;data&quot;:{&quot;empIdFormatList&quot;:[{&quot;{EMP_ID}&quot;:[{&quot;format&quot;:&quot;{EMP_ID}&quot;,&quot;desc&quot;:&quot;Only Number&quot;,&quot;example&quot;:&quot;1001&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;EMP{EMP_ID}&quot;:[{&quot;format&quot;:&quot;EMP{EMP_ID}&quot;,&quot;desc&quot;:&quot;Prefix + Number&quot;,&quot;example&quot;:&quot;EMP1001&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;{PREFIX}{EMP_ID}&quot;:[{&quot;format&quot;:&quot;{PREFIX}{EMP_ID}&quot;,&quot;desc&quot;:&quot;Custom Prefix + Number&quot;,&quot;example&quot;:&quot;EMP1001&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;{ORG_ID}{EMP_ID}&quot;:[{&quot;format&quot;:&quot;{ORG_ID}-{EMP_ID}&quot;,&quot;desc&quot;:&quot; Org ID + Number&quot;,&quot;example&quot;:&quot;CODEX1001&quot;},{&quot;s&quot;:&quot;arr&quot;}]},{&quot;s&quot;:&quot;arr&quot;}],&quot;empIdFormat&quot;:[{&quot;{EMP_ID}&quot;:&quot;{EMP_ID}&quot;,&quot;EMP{EMP_ID}&quot;:&quot;EMP{EMP_ID}&quot;,&quot;{PREFIX}{EMP_ID}&quot;:&quot;{PREFIX}{EMP_ID}&quot;,&quot;{ORG_ID}{EMP_ID}&quot;:&quot;{ORG_ID}-{EMP_ID}&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;prefix&quot;:&quot;EMP&quot;,&quot;start&quot;:1001,&quot;format&quot;:&quot;{PREFIX}-{EMP_ID}&quot;,&quot;orgId&quot;:&quot;&quot;,&quot;preview&quot;:&quot;EMP-1001&quot;,&quot;dataRow&quot;:null},&quot;memo&quot;:{&quot;id&quot;:&quot;3zmnQqXTUPbCv1ieV0Nv&quot;,&quot;name&quot;:&quot;employee-id-conf-form&quot;,&quot;path&quot;:&quot;vms-portal\/org\/add&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;29dc51fc74aee508462eb134b25c4e2cc7fb4538d7e80a066a7369e97a268887&quot;}" wire:effects="[]" wire:id="3zmnQqXTUPbCv1ieV0Nv" class="row g-3">
+<div class="col-md-2">
+<label class="form-label required"> Org Code 
+<i class="fa fa-info-circle text-info" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Unique organization code. Must be UPPERCASE, without spaces, and up to 5 characters (e.g., ABC01)." data-bs-original-title="Unique organization code. Must be UPPERCASE, without spaces, and up to 5 characters (e.g., ABC01).">
+</i>
+</label>
+<input class="form-control" wire:model="orgId" oninput="debouncedFilter(this.value, &quot;orgId&quot;)" maxlength="5" id="orgInput" placeholder="Enter Org Code" name="org_code" type="text">
+</div>
+
+<div class="col-md-2">
+<label for="" class="form-label">Employee ID Prefix</label>
+<input class="form-control" wire:model="prefix" oninput="debouncedFilter(this.value, &quot;prefix&quot;)" maxlength="5" id="prefixInput" required="required" placeholder="e.g EMP" name="emp_code" type="text">
+</div>
+
+<div class="col-md-2">
+<label for="" class="form-label">Employee ID Start</label>
+<input class="form-control" wire:model="start" oninput="debouncedFilter(this.value, &quot;start&quot;)" min="1" id="startInput" placeholder="e.g 1001" name="emp_code_start" type="number">
+</div>
+
+<div class="col-md-2">
+<label class="form-label">Employee ID Format
+<i class="fa fa-info-circle text-info ms-1" role="button" data-bs-toggle="modal" data-bs-target="#emp_id_format_help"></i>
+<div class="modal fade" id="emp_id_format_help" tabindex="-1" aria-labelledby="formatHelpModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow">
+              <div class="modal-header bg-primary2 text-white">
+                <h5 class="modal-title" id="formatHelpModalLabel">Employee ID Format Guide</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul class="list-group">
+                 <!--[if BLOCK]><![endif]-->                              <li class="list-group-item">
+                    <span class="text-danger">{EMP_ID}</span> → Only Number <br>
+                    <div class="text-muted mt-2">Example: <b>1001</b></div>
+                  </li>
+                                              <li class="list-group-item">
+                    <span class="text-danger">EMP{EMP_ID}</span> → Prefix + Number <br>
+                    <div class="text-muted mt-2">Example: <b>EMP1001</b></div>
+                  </li>
+                                              <li class="list-group-item">
+                    <span class="text-danger">{PREFIX}{EMP_ID}</span> → Custom Prefix + Number <br>
+                    <div class="text-muted mt-2">Example: <b>EMP1001</b></div>
+                  </li>
+                                              <li class="list-group-item">
+                    <span class="text-danger">{ORG_ID}-{EMP_ID}</span> →  Org ID + Number <br>
+                    <div class="text-muted mt-2">Example: <b>CODEX1001</b></div>
+                  </li>
+                <!--[if ENDBLOCK]><![endif]-->
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+              </label>
+<select class="form-select" wire:model.lazy="format" id="formatSelect" name="emp_code_format"><option selected="selected" value="">--Select--</option><option value="{EMP_ID}">{EMP_ID}</option><option value="EMP{EMP_ID}">EMP{EMP_ID}</option><option value="{PREFIX}{EMP_ID}">{PREFIX}{EMP_ID}</option><option value="{ORG_ID}{EMP_ID}">{ORG_ID}-{EMP_ID}</option></select>                             
+</div>
+
+<div class="col-md-2">
+<label for="" class="form-label">Preview</label>
+<input class="form-control" wire:model.lazy="preview" id="previewInput" placeholder="e.g. EMP1001" readonly="" name="emp_code_preview" type="text">
+</div>
+</div>
+
+            
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+  <h5 class="card-title">Branding</h5>
+  <hr>
+
+  <!-- Multi Columns Form -->
+  <div class="row g-3">
+    
+    <div class="col-md-4">
+      <label for="logoInput" class="form-label required">Logo</label>
+      <input  id="logoInput" class="form-control" name="logo" type="file" accept="image/*">
+    </div> 
+
+    <div class="col-md-6">
+      <label for="" class="form-label"></label>
+      <img src="<%=baseUrls.admin%>/public/admin_assets/img/no_img.jpg" id="logoPreview" class="logo-edit" width="100">
+    </div> 
+
+   
+
+    <div class="col-md-4">
+      <label for="waterInput" class="form-label required">Water Mark</label>
+      <input  id="waterInput" class="form-control" name="water_mater" type="file" accept="image/*">
+    </div> 
+
+    <div class="col-md-6">
+      <label for="" class="form-label"></label>
+      <img src="<%=baseUrls.admin%>/public/admin_assets/img/no_img.jpg" id="waterPreview" class="waterPreview" width="100">
+    </div> 
+
+    <div class="col-md-4">
+      <label for="favIconInput" class="form-label required">fav icon</label>
+      <input  id="favIconInput" class="form-control" name="favicon" type="file" accept="image/*">
+    </div> 
+
+    <div class="col-md-6">
+      <label for="" class="form-label"></label>
+      <img src="<%=baseUrls.admin%>/public/admin_assets/img/no_img.jpg" id="favIconPreview" class="favicon" width="100">
+    </div> 
+
+    
+    
+    
+
+
+    <div class="col-md-4">
+      <label for="" class="form-label">Primary Color</label>
+      <input class="form-control form-control-color" id="" placeholder="Choose your color" style="border-top-color: " name="primary_color" type="color">
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="card">
+<div class="card-body">
+  <h5 class="card-title">Other Information</h5>
+  <hr>
+
+  <!-- Multi Columns Form -->
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label for="" class="form-label required">Contact Person Name</label>
+      <input class="form-control" id="" placeholder="" name="contact_person_name" type="text">
+    </div>
+    <div class="col-md-4">
+      <label for="" class="form-label required">Contact Person Email</label>
+      <input class="form-control" id="" placeholder="" name="contact_person_email" type="email">
+    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+    <div class="col-md-4">
+      <label for="" class="form-label required">Contact Person Mobile</label>
+      <input class="form-control" id="" placeholder="" name="contact_person_mobile" type="number">
+    </div>
+  </div>
+
+</div>
+</div>
+
+</div>       
+</div>
+
+<!-- ========== New Tenant Configuration Section ========== -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Tenant Configuration</h5>
+        <hr>
+        <div class="row g-3">
+
+          <!-- DB Name -->
+          <div class="col-md-4">
+            <label class="form-label">Database Name</label>
+            <input type="text" class="form-control" name="db_name" placeholder="e.g. tenant_xyz_db">
+          </div>
+
+          <!-- DB Host -->
+          <div class="col-md-4">
+            <label class="form-label">Database Host</label>
+            <input type="text" class="form-control" name="db_host_name" placeholder="e.g. 127.0.0.1">
+          </div>
+
+          <!-- DB Username -->
+          <div class="col-md-4">
+            <label class="form-label">Database Username</label>
+            <input type="text" class="form-control" name="db_user_name" placeholder="e.g. tenant_user">
+          </div>
+
+          <!-- DB Password -->
+          <div class="col-md-4">
+            <label class="form-label">Database Password</label>
+            <input type="text" class="form-control" name="db_password" placeholder="Enter password">
+          </div>
+
+        </div> <!-- End Tenant Config Row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit -->
+<div class="text-end">
+  <button type="reset" class="btn btn-secondary">Reset</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+  </form>
+</section>
+
+  </main><!-- End #main -->
+
+  <%- include ('../partials/footer') -%>
+  <script src="<%=baseUrls.admin%>/public/assets/js/client.js"></script>
+  <!-- <script>
+     $(document).ready(function () {
+    console.log("DOM is ready");
+  });
+  
+    $(document).ready(function () {
+    $('#logoInput').on('change', function (e) {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          $('#logoPreview').attr('src', event.target.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        $('#logoPreview').attr('src', '<%= baseUrls.admin %>/public/admin_assets/img/no_img.jpg');
+      }
+    });
+  });
+
+  function generateEmpIdPreview(prefix = 'EMP', start = 1001, format = '{PREFIX}-{EMP_ID}', orgId = 'ORG01') {
+    const placeholders = {
+        '{PREFIX}': prefix,
+        '{EMP_ID}': start,
+        '{ORG_ID}': orgId
+    };
+
+    $.each(placeholders, function(key, value) {
+        if (format.includes(key)) {
+            format = format.replaceAll(key, value);
+        }
+    });
+
+    return format;
+}
+
+// Example usage:
+let preview = generateEmpIdPreview('EMP', 1023, '{ORG_ID}-{PREFIX}-{EMP_ID}', 'ABC01');
+
+    
+  </script> -->
+  
+  
+  
+
+ <!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orgInput = document.getElementsByName("org_code")[0];
+    const prefixInput = document.getElementsByName("emp_code")[0];
+    const startInput = document.getElementsByName("emp_code_start")[0];
+    const formatSelect = document.getElementsByName("emp_code_format")[0];
+    const previewInput = document.getElementsByName("emp_code_preview")[0];
+    console.log("hello",orgInput,)
+    function updatePreview() {
+      const orgCode = orgInput?.value?.trim().toUpperCase() || "";
+      const prefix = prefixInput?.value?.trim().toUpperCase() || "";
+      const start = startInput?.value?.trim() || "1001";
+      const format = formatSelect?.value;
+
+      let preview = "";
+
+      switch (format) {
+        case "{EMP_ID}":
+          preview = start;
+          break;
+        case "EMP{EMP_ID}":
+          preview = `EMP${start}`;
+          break;
+        case "{PREFIX}{EMP_ID}":
+          preview = `${prefix}${start}`;
+          break;
+        case "{ORG_ID}{EMP_ID}":
+          preview = `${orgCode}${start}`;
+          break;
+        default:
+          preview = "";
+      }
+
+      if (previewInput) {
+        previewInput.value = preview;
+      }
+    }
+
+    [orgInput, prefixInput, startInput, formatSelect].forEach(el => {
+      if (el) {
+        el.addEventListener("input", updatePreview);
+        el.addEventListener("change", updatePreview);
+      }
+    });
+    console.log("sfsdf",preview)
+
+    // Initialize preview on page load
+    updatePreview();
+  });
+</script> -->
+
+   
+  

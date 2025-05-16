@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98" height="98" viewBox="0 0 98 98">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#2f75b5"/>
+      <stop offset="1" stop-color="#00376a"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_44398" data-name="Group 44398" transform="translate(-463 -688)">
+    <circle id="Ellipse_1662" data-name="Ellipse 1662" cx="49" cy="49" r="49" transform="translate(463 688)" fill="url(#linear-gradient)"/>
+    <g id="Layer_2" data-name="Layer 2" transform="translate(488.184 713.185)">
+      <g id="calendar">
+        <rect id="Rectangle_20297" data-name="Rectangle 20297" width="48" height="48" transform="translate(-0.185 -0.185)" fill="#fff" opacity="0"/>
+        <path id="Path_39845" data-name="Path 39845" d="M32.769,5.969H30.785V3.985a1.985,1.985,0,0,0-3.969,0V5.969H14.908V3.985a1.985,1.985,0,0,0-3.969,0V5.969H8.954A5.954,5.954,0,0,0,3,11.923V35.739a5.954,5.954,0,0,0,5.954,5.954H32.769a5.954,5.954,0,0,0,5.954-5.954V11.923a5.954,5.954,0,0,0-5.954-5.954Zm-19.846,25.8a1.985,1.985,0,1,1,1.985-1.985A1.985,1.985,0,0,1,12.923,31.769Zm15.877,0H20.862a1.985,1.985,0,0,1,0-3.969H28.8a1.985,1.985,0,0,1,0,3.969Zm5.954-11.908H6.969V11.923A1.985,1.985,0,0,1,8.954,9.938h1.985v1.985a1.985,1.985,0,0,0,3.969,0V9.938H26.815v1.985a1.985,1.985,0,0,0,3.969,0V9.938h1.985a1.985,1.985,0,0,1,1.985,1.985Z" transform="translate(2.954 1.969)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

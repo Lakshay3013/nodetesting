@@ -1,0 +1,95 @@
+<%- include ('../partials/master') -%>
+
+<!-- ======= Header ======= -->
+<%- include ('../partials/header') -%>
+
+<!-- ======= Sidebar ======= -->
+<%- include ('../partials/sidebar') -%>
+
+<main id="main" class="main">
+  <div class="">
+    <div class="pagetitle">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1>Organizations</h1>
+          <nav>
+            <ol class="breadcrumb"></ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 text-end">
+          <a class="btn btn-md btn-success" href="<%= baseUrls.admin %>/administration/onboardClient">
+            <i class="fa fa-plus"></i> Add New
+          </a>
+        </div>
+      </div>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <% if (getAllClient && getAllClient.length > 0) { %>
+          <% getAllClient.forEach((item, index) => { %>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm h-100 position-relative">
+                <div class="position-absolute top-0 end-0 m-2">
+                  <% if (item.is_active) { %>
+                    <span class="badge bg-success">Active</span>
+                  <% } else {%>
+                    <span class="badge bg-danger">Inactive</span>
+                  <% } %>
+                </div>
+                <% if (item.logo) { %>
+                  <img src="<%= baseUrls.admin %>/public/client_logo/img/<%= item.logo %>" class="card-img-top p-3" style="max-height: 160px; object-fit: contain;" alt="Logo">
+                <% } else { %>
+                  <img src="<%= baseUrls.admin %>/public/admin_assets/img/no_img.jpg" class="card-img-top p-3" style="max-height: 160px; object-fit: contain;" alt="Logo">
+                <% } %>
+
+                <div class="card-body">
+                  <div class="table-responsive tbleDiv">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td colspan="2" class="text-center">
+                            <h5 class="card-title text-center"><%= item.name %> <br><small class="text-muted">(ORG1)</small></h5>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Email</th>
+                          <td><%=item.email %></td>
+                        </tr>
+                        <tr>
+                          <th>Phone</th>
+                          <td><%= item.phone %></td>
+                        </tr>
+                        <tr>
+                          <th>Created</th>
+                          <td><%= item.created_at %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="card-footer bg-white d-flex justify-content-around py-2">
+                  <a href="#" class="btn btn-secondary"><i class="fa fa-desktop"></i> Access</a>
+                  <a href="/administration/view-client/<%= item._id %>" class="btn btn-secondary"><i class="fa fa-eye"></i> View</a>
+                  <a href="/administration/edit-client/<%= item._id %>" class="btn btn-secondary"><i class="fa fa-edit"></i> Edit</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="col-12 text-center">
+            <h5 class="text-muted">No data available</h5>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center">
+        <!-- Add pagination here if needed -->
+      </div>
+    </section>
+  </div>
+</main>
+
+<%- include ('../partials/footer') -%>

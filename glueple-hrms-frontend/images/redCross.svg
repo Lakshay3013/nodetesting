@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="69" height="69" viewBox="0 0 69 69">
+  <g id="Group_45711" data-name="Group 45711" transform="translate(-1351.142 -153.142)">
+    <g id="Ellipse_1711" data-name="Ellipse 1711" transform="translate(1351.142 153.142)" fill="#fff" stroke="#ef665c" stroke-width="7">
+      <circle cx="34.5" cy="34.5" r="34.5" stroke="none"/>
+      <circle cx="34.5" cy="34.5" r="31" fill="none"/>
+    </g>
+    <g id="Layer_17" data-name="Layer 17" transform="translate(1368.126 170.126)">
+      <circle id="Ellipse_1712" data-name="Ellipse 1712" cx="17.5" cy="17.5" r="17.5" transform="translate(0.016 0.016)" fill="#ef665c"/>
+      <g id="Group_45576" data-name="Group 45576" transform="translate(6.016 6.016)">
+        <path id="Path_40647" data-name="Path 40647" d="M7,18a1,1,0,0,1-.707-1.707l10-10a1,1,0,1,1,1.414,1.414l-10,10A1,1,0,0,1,7,18Z" fill="#fff" stroke="#fff" stroke-width="1"/>
+        <path id="Path_40648" data-name="Path 40648" d="M17,18a1,1,0,0,1-.707-.293l-10-10A1,1,0,1,1,7.707,6.293l10,10A1,1,0,0,1,17,18Z" fill="#fff" stroke="#fff" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

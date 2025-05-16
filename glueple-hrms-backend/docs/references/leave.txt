@@ -1,0 +1,8 @@
+1. ZOHO Admin 5.0
+https://help.zoho.com/portal/en/kb/people/administrator-guide/leave/settings/articles/setting-up-leave-policies-in-zoho-people#What_is_Leave_Policy_in_Zoho_People
+
+2. ZOHO Admin Basic
+https://www.zoho.com/people/help/adminguide/configuringleave.html
+
+3. ZOHO Admin Advance
+https://www.zoho.com/people/help/adminguide/new-leave-type.html

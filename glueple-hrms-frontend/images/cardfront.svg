@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="639.243" height="1037.399" viewBox="0 0 639.243 1037.399">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.856" x2="1.179" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff1781"/>
+      <stop offset="1" stop-color="#ff8e08"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-0.06" y1="0.248" x2="0.94" y2="0.079" xlink:href="#linear-gradient"/>
+    <clipPath id="clip-path">
+      <path id="Path_18456" data-name="Path 18456" d="M136.482,1082.587,22.333,1142.331v4.1h234.82a58.456,58.456,0,0,0-4.364-15.213c-20.968-48.537-50.118-60.642-73.994-60.639-23.77,0-42.313,12.008-42.313,12.008" fill="url(#linear-gradient)"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_18455" data-name="Path 18455" d="M233.129,110.321a91.167,91.167,0,0,0,4.045,16.307c47.282,137.431,143.962,83.181,143.962,83.181l229.441-99.488Z" fill="url(#linear-gradient-2)"/>
+    </clipPath>
+  </defs>
+  <g id="card_front" data-name="card front" transform="translate(-6438.378 1821.399)">
+    <rect id="Rectangle_19024" data-name="Rectangle 19024" width="639.243" height="1037.399" transform="translate(6438.378 -1821.399)" fill="none"/>
+    <g id="card_front-2" data-name="card front">
+      <g id="Group_26294" data-name="Group 26294" transform="translate(6416.045 -1930.431)">
+        <g id="Group_26293" data-name="Group 26293">
+          <g id="Group_26292" data-name="Group 26292" clip-path="url(#clip-path)">
+            <rect id="Rectangle_19018" data-name="Rectangle 19018" width="234.82" height="75.855" transform="translate(22.333 1070.576)" fill="url(#linear-gradient)"/>
+          </g>
+        </g>
+      </g>
+      <g id="Group_26300" data-name="Group 26300" transform="translate(6431.667 -1931.72)">
+        <g id="Group_26290" data-name="Group 26290" clip-path="url(#clip-path-2)">
+          <rect id="Rectangle_19017" data-name="Rectangle 19017" width="377.448" height="153.738" transform="translate(233.129 110.321)" fill="url(#linear-gradient-2)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

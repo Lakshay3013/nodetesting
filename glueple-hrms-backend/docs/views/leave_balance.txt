@@ -1,0 +1,78 @@
+db.createView(
+   "leave_balances",               
+   "leave_balance_logs",  
+  [
+    {
+      $lookup: {
+        from: "leave_types",
+        localField: "leave_type_id",
+        foreignField: "_id",
+        as: "leave_info"
+      }
+    },
+    {
+      $unwind: {
+        path: "$leave_info",
+        preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+      $lookup: {
+        from: "employees",
+        localField: "emp_id",
+        foreignField: "_id",
+        as: "emp_user_info"
+      }
+    },
+    {
+      $unwind: {
+        path: "$emp_user_info",
+        preserveNullAndEmptyArrays: true 
+      }
+    },
+    {
+      $group: {
+        _id: {
+          emp_id: "$emp_user_info.emp_id",
+          employee_id: "$emp_user_info._id",
+          leave_name: "$leave_info.name",
+          leave_type: "$leave_info._id",
+          leave_short_name: "$leave_info.short_name",
+        },
+        total_leave_credited: {
+          $sum: {
+            $cond: [
+              { $and: [{ $eq: ["$status", "CR"] }, { $eq: ["$is_approved", true] }] },
+              "$leave_value",
+              0
+            ]
+          }
+        },
+        total_leave_debited: {
+          $sum: {
+            $cond: [
+              { $eq: ["$status", "DR"] },
+              "$leave_value",
+              0
+            ]
+          }
+        }
+      }
+    },
+    {
+      $project: {
+        leave_type: "$_id.leave_type",
+        employee_id: "$_id.employee_id",
+        emp_id: "$_id.emp_id",
+        leave_name: "$_id.leave_name",
+        leave_short_name: "$_id.leave_short_name",
+        leave_type: "$_id.leave_type",
+        total_leave_credited: 1,
+        total_leave_debited: 1,
+        leave_balance: {
+          $subtract: ["$total_leave_credited", "$total_leave_debited"]
+        }
+      }
+    }
+  ]
+)

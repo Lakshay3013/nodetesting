@@ -1,0 +1,332 @@
+<%- include ('../partials/master') -%>
+
+    <!-- ======= Header ======= -->
+    <%- include ('../partials/header') -%>
+
+        <!-- ======= Sidebar ======= -->
+        <%- include ('../partials/sidebar') -%>
+
+            <main id="main" class="main">
+
+                <div class="pagetitle">
+                    <h1>Profile</h1>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">Client</li>
+                        </ol>
+                    </nav>
+                </div><!-- End Page Title -->
+
+                <section class="section profile">
+                    <div class="row">
+                        <% if (clientData) { %>
+
+                            <div class="col-xl-12">
+
+                                <div class="card">
+                                    <div class="card-body pt-3">
+                                        <!-- Bordered Tabs -->
+                                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                                            <li class="nav-item">
+                                                <button class="nav-link active" data-bs-toggle="tab"
+                                                    data-bs-target="#profile-overview">Organization Information</button>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <button class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#profile-edit">Employee ID Configuration</button>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <button class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#profile-settings">Branding</button>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <button class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#profile-change-password">Other Information</button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#profile-change-password1">Tenant
+                                                    Configuration</button>
+                                            </li>
+
+                                        </ul>
+                                        <div class="tab-content pt-2">
+
+                                            <div class="tab-pane fade show active profile-overview"
+                                                id="profile-overview">
+        
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.name %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Employee Strength</div>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <% adminDropDown?.employeeRanges?.forEach(option=> { %>
+                                                            <% if (option.id==clientData.employee_strength ) { %>
+                                                                <%= option.name %>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                    </div>
+                                                    </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Email</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.email %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Phone </div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.phone %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Industry</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <% adminDropDown?.industryTypes?.forEach(option=> { %>
+                                                            <% if (option.id==clientData.industry_type ) { %>
+                                                                <%= option.name %>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                    </div>
+                
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Country</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <% adminDropDown?.countries?.forEach(option=> { %>
+                                                            <% if (option.id==clientData.country ) { %>
+                                                                <%= option.name %>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                    </div>
+                            
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">State</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.state %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">City</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.city %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Address</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.address %></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Timezone</div>
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <% adminDropDown?.timeZones?.forEach(option=> { %>
+                                                            <% if (option.id==clientData.time_zone ) { %>
+                                                                <%= option.name %>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Status</div>
+                                                    <div class="col-lg-9 col-md-8"><%= clientData.is_active ? 'Active' : 'Inactive' %></div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                                                <!-- Profile Edit Form -->
+                                                <form>
+                                                    <div class="row mb-3">
+                                                        <label for="profileImage"
+                                                            class="col-md-4 col-lg-3 col-form-label">Org Code</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <div class="col-lg-9 col-md-8"><%= clientData.org_code %></div>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="fullName"
+                                                            class="col-md-4 col-lg-3 col-form-label">Employee ID Prefix</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <div class="col-lg-9 col-md-8"><%= clientData.emp_code %></div>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="about"
+                                                            class="col-md-4 col-lg-3 col-form-label">Employee ID Start</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <div class="col-lg-9 col-md-8"><%= clientData.emp_code_start %></div>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="company"
+                                                            class="col-md-4 col-lg-3 col-form-label">Employee ID Format</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <div class="col-lg-9 col-md-8"><%= clientData.emp_code_format %></div>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="Job"
+                                                            class="col-md-4 col-lg-3 col-form-label">Preview</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <div class="col-lg-9 col-md-8"><%= clientData.emp_code_preview %></div>
+                                                            </div>
+                                                    </div>
+
+                                                </form><!-- End Profile Edit Form -->
+
+                                            </div>
+
+                                            <div class="tab-pane fade pt-3" id="profile-settings">
+
+                                                <!-- Settings Form -->
+                                                <form>
+
+                                                    <div class="row mb-3">
+                                                        <label for="fullName"
+                                                            class="col-md-4 col-lg-3 col-form-label">Logo</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <img src="<%=baseUrls.admin%>/public/client_logo/<%= clientData.logo %>"
+                                                                class="logo-edit" width="100">
+                                                            </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="fullName"
+                                                            class="col-md-4 col-lg-3 col-form-label">Water mark</mark></label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <img src="<%=baseUrls.admin%>/public/client_logo/<%= clientData.water_mark %>"
+                                                                class="logo-edit" width="100">
+                                
+                                                            </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="fullName"
+                                                            class="col-md-4 col-lg-3 col-form-label">Fav icon</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <img src="<%=baseUrls.admin%>/public/client_logo/<%= clientData.favicon %>"
+                                                                class="logo-edit" width="100">
+                                
+                                                            </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="fullName"
+                                                            class="col-md-4 col-lg-3 col-form-label">Primary Color</label>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <input class="form-control form-control-color" id=""
+                                                                placeholder="Choose your color"
+                                                                disabled="true"
+                                                                style="border-top-color: " name="primary_color"
+                                                                type="color" value="<%= clientData.primary_color %>">
+                                                            </div>
+                                                    </div>
+                                                </form><!-- End settings Form -->
+
+                                            </div>
+
+                                            <div class="tab-pane fade pt-3" id="profile-change-password">
+                                                <!-- Change Password Form -->
+                                                <form>
+
+                                                    <div class="row mb-3">
+                                                        <label for="currentPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Contact Person Name</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.contact_person_name %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="currentPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Contact Person Email</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.contact_person_email %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="currentPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Contact Person Mobile</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.contact_person_mobile %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                </form><!-- End Change Password Form -->
+
+                                            </div>
+
+                                            <div class="tab-pane fade pt-3" id="profile-change-password1">
+                                                <!-- Change Password Form -->
+                                                <form>
+                                                    
+
+                                                    <div class="row mb-3">
+                                                        <label for="currentPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Database Name</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.db_name %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="newPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Database Host</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.db_host_name %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="renewPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Database Username</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.db_user_name %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="renewPassword"
+                                                            class="col-md-4 col-lg-3 col-form-label">Database Password</label>
+                                                        <div class="col-md-8 col-lg-9">
+                                                            <div class="col-lg-9 col-md-8"><%= clientData.db_password %></div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                </form><!-- End Change Password Form -->
+
+                                            </div>
+
+                                        </div><!-- End Bordered Tabs -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <% } else { %>
+                                <p class="text-danger">Client data not available.</p>
+                                <% } %>
+
+
+                    </div>
+                </section>
+
+            </main><!-- End #main -->
+
+            <%- include ('../partials/footer') -%>

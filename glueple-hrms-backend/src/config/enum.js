@@ -1,0 +1,48 @@
+const { list } = require("pm2")
+
+const enumList = {
+    mrfStatus: {list: ['open', 'close', 'hold'], default: 'open'},
+    mrfType: {list: ['vacancy', 'replacement'], default: ''},
+    permissionType: {list: ['menu', 'submenu', 'route'], default: 'route'},
+    permissionCategory: {list: ['permission', 'department', 'designation', 'position', 'admin', 'mrf', 'hiring','attendance','payroll_admin','travel_and_claim',"pms","community","route","task_management"], default: 'permission'},
+    userPermissionType: {list: ['roles','employees'], default: 'roles'},
+    interviewStatus: {list: ['pending', 'rejected', 'approved'], default: 'pending'},
+    offerLetterStatus: {list: ['pending', 'send', 'accepted', 'rejected'], default: 'pending'},
+    approverActionType: {list: ['pending', 'approve', 'reject', 'cancel'], default: 'pending'},
+    approvalLevel: {list: ['single','multiple'], default: 'single'},
+    // approvalType: {list: ['mrf','leave','attendance_correction'], default: 'mrf'},
+    mrfOpenFor: {list: ['IJP', 'REF', ''], default: ''},
+    otpType: {list: ['forgot_password'], default: 'forgot_password'},
+    leaveExpireOn: {list: ['yearly', 'financial_year', 'weekly', 'quarterly','half_yearly', 'monthly',''], default: 'yearly'},
+    leaveUnit: {list: ['days', 'hours'], default: 'days'},
+    leaveCreditBasis: {list: ['attendance_lock','first_day', 'last_day', 'payroll_lock'], default: 'attendance_lock'},
+    assignmentShiftType:{list:['monthly','temporary','default'], default:'default'},
+    weekOffDays:{list:['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],default:'sunday'},
+    leaveCreditBasis: {list: ['attendance_lock','first_day_of_month', 'last_day_of_month', 'first_day_of_year', 'last_day_of_year', 'payroll_lock'], default: 'attendance_lock'},
+    attendanceLogType: {list: ['IN','OUT'], default: 'IN'},
+    attendanceDeviceFrom: {list: ['machine','web', 'mobile'], default: 'machine'},
+    attendanceUserAgent: {list: ['chrome','safari', 'ios', 'android'], default: 'chrome'},
+    shortLeaveUsedAs: {list: ['attendance_calculation', 'apply_leave'], default: 'apply_leave'},
+    shortLeaveApplicableWithin: {list: ['week', 'month'], default: 'month'},
+    shortLeaveApplicableFor: {list: ['all', 'specific'], default: 'all'},
+    leaveType: {list: ['paid', 'unpaid', 'on_duty'], default: 'unpaid'},
+    leaveBalanceBasedOn: {list: ['fixed_entitlement', 'grant_leave',''], default: 'fixed_entitlement'},
+    leaveEffectiveAfterName: {list: ['day', 'month', 'year',''], default: 'day'},
+    leaveEffectiveAfterValue: {list: ['date_of_joining', 'date_of_confirmation',''], default: 'date_of_joining'},
+    exceedLeaveBalanceValue: {list: ['without_limit','year_end_limit', 'without_limit_as_lwp'], default: 'without_limit_as_lwp'},
+    leaveAllowRequestsFor: {list: ['past_date', 'future_date', 'both'], default: 'both'},
+    leaveBalanceStatus: {list: ['CR', 'DR'], default: 'DR'},
+    leaveBalanceAddedFrom: {list: ['cron', 'leave', 'admin'], default: 'admin'},
+    attendanceType: {list: ['attendance', 'long_break', 'short_break','break'], default: 'attendance'},
+    gender: {list: ['Male','Female','Other'], default: ['Male','Female','Other']},
+    imageType: {list: ['file','s3'], default: 'file'},
+    emi_status:{list:['pending','paid'],default:'pending'},
+    earning_value:{list:['fixed', 'percentage', 'flexible'], default:"fixed"},
+    kudos_status :{list: ['pending', 'rejected','approved', 'expired'], default: 'pending'},
+    postType: {list: ['post', 'announcement',"welcome_email","kudos","birthday","anniversary"], default: 'post'},
+}
+
+
+module.exports = {
+    enumList,
+}

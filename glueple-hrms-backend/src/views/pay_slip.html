@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>salary slip</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        /* border: 1px solid black; */
+      }
+
+      table td {
+        line-height: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 10px;
+      }
+
+      table th {
+        /* background-color: #fbc403; */
+        color: #363636;
+        font-size: 10px;
+      }
+      .salary-info-td {
+        font-size: 10px !important;
+      }
+      .salary-section {
+        width: 500px;
+        position: relative;
+        margin: auto;
+      }
+      @media (max-width:576px) {
+        .salary-section {
+            width: 500px ;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="salary-section">
+        <br/>
+        <br/>
+        <table width="100%">
+        <tr height="80px" style="text-align:center;font-size:16px; font-weight:600;border-bottom: 1px soild #fff;">
+          <td>
+             <img src="data:image/png;base64,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"
+                style="float: left;width: 80px;height: 35px;">
+            </td>
+            <td><p style="margin-top: 0px;font-size: 16px;"><b>QDegrees Services Pvt. Ltd.</b></p>
+              <p style="margin-top: 0px;"><b>B-9, 1st Floor, Mahalaxmi Nagar, behind WTP South block,
+                Jaipur - 302017
+                </b></p>
+              <p style="margin-bottom: 6px;"><b>Salary Slip for the month of #MONTH#</b></p></td>
+        </tr>
+        <table width="100%">
+          <tr>
+              <td class="salary-info-td">Emp ID</td>
+              <td class="salary-info-td">:&nbsp;#EMP_ID#</td>
+              <td class="salary-info-td">Employee Name</td>
+              <td class="salary-info-td">:&nbsp;#EMP_NAME#</td>
+          </tr>
+          <tr>
+            <td>Department</td>
+            <td>:&nbsp;#DEPARTMENT#</td>
+            <td>Designation</td>
+            <td>:&nbsp;#DESIGNATION#</td>
+          </tr>
+          <tr>
+            <td>DOJ</td>
+            <td>:&nbsp;#DOJ#</td>
+            <td>Project/Process</td>
+            <td>:&nbsp;#PROCESS#</td>
+          </tr>
+          <tr>
+              <td>PF. No.</td>
+              <td>:&nbsp;#PF_NO#</td>
+              <td>ESI No.</td>
+              <td>:&nbsp;#ESI_NO#</td>
+          </tr>
+            <tr>
+              <td>Bank A/c No.</td>
+              <td>:&nbsp;#BANK_ACC#</td>
+              <td>IFSC</td>
+              <td>:&nbsp;#IFSC#</td> 
+            </tr>
+            <!-- <tr>
+                <td>Location</td>
+                <td>:&nbsp;#LOCATION#</td>
+                
+            </tr> -->
+            <tr>
+              <td>Aadhar No.</td>
+              <td>:&nbsp;#AADHAR#</td>
+              <td>Pan No.</td>
+              <td>:&nbsp;#PAN_NO#</td>
+            </tr>
+            <!-- <tr>
+                <td>Mode of Pay</td>
+                <td>:&nbsp;#PAY_MODE#</td>
+                <td>DOB</td>
+                <td>:&nbsp;#DOB#</td>
+            </tr> -->
+            <tr>
+                <td>UAN No.</td>
+                <td>:&nbsp;#UAN_NO#</td>
+                <td>Absent Days</td>
+                <td>:&nbsp;#ABSENT_DAYS#</td>
+            </tr>
+            <tr>
+              <td>Pay Days</td>
+              <td>:&nbsp;#PAY_DAYS#</td>
+              <td>Present Days</td>
+              <td>:&nbsp;#PRESENT_DAYS#</td>
+            </tr>
+        </table>
+        </table>
+        <tr></tr>
+        <br />
+        <table border="1">
+        <tr>
+            <th>Earnings</th>
+            <th>Gross</th>
+            <th>Amount</th>
+            <th>Deductions</th>
+            <th>Amount</th>
+        </tr>
+        #EARNINGS_DEDUCTIONS#
+        <tr>
+            <td><strong>Total</strong></td>
+            <td style="text-align: right;"><strong>#TOTAL_ER_GROSS#</strong></td>
+            <td style="text-align: right;"><strong>#TOTAL_ER_AMOUNT#</strong></td>
+            <td><strong>Total</strong></td>
+            <td style="text-align: right;"><strong>#TOTAL_DD_AMOUNT#</strong></td>
+        </tr>
+        <tr style="">
+            <td colspan="2"><strong>NET PAY</strong></td>
+            <td style="text-align: right; border-left: 1px solid #fff; border-right: 1px solid #fff;"><strong>#NET_PAY#</strong></td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #fff;">
+          <td colspan="2"><strong>In Words</strong></td>
+          <td colspan="3" style="border-left: 1px solid #fff; text-transform: capitalize;"><strong>#NET_PAY_IN_WORDS#</strong></td>
+        </tr>
+        <tr style="border-top: 1px solid #fff; border-bottom: 1px solid black;">
+           <td colspan="5"></td>
+        </tr>
+      
+        </table>
+        <table style="border: 1px solid #fff;">
+            <tr>
+                <td style="text-align: center;" colspan="5">
+                  This is system generated payslip and does not require signature.
+                </td>
+            </tr>
+        </table>
+    </div>
+  </body>
+</html>

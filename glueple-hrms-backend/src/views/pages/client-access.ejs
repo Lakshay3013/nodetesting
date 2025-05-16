@@ -1,0 +1,170 @@
+<%- include ('../partials/master') -%>
+
+  <!-- ======= Header ======= -->
+  <%- include ('../partials/header') -%>
+
+    <!-- ======= Sidebar ======= -->
+    <%- include ('../partials/sidebar') -%>
+
+      <main id="main" class="main">
+        <div class="pagetitle">
+          <h1>Client Access</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active">Client Access</li>
+            </ol>
+          </nav>
+        </div>
+
+        <section class="section">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title card-titile-hr">Gives Permission</h5>
+
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between mt-2">
+                    <h5 class="card-title bg-light p-2 rounded text-primary d-flex align-items-center">
+                      <i class="bi bi-chat-dots-fill me-2"></i> Permissions
+                    </h5>
+                    <div>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Add Permissions
+                      </button>
+                    </div>
+                  </div>
+                  <p class="text-muted mb-3">
+                    Enable specific permissions to control access for different
+                    user roles.
+                  </p>
+                  <hr>
+
+                  <div class="body">
+
+
+                    <!-- Toggle Buttons -->
+
+
+                    <button id="selectAllBtn" class="btn btn-sm btn-success">Select All</button>
+                    <button id="deselectAllBtn" class="btn btn-sm btn-danger">Deselect All</button>
+
+                    <!-- Parent Table -->
+                    <!-- Parent Table -->
+                    <div class="table-responsive">
+                      <table class="table table-bordered align-middle text-center">
+                        <thead class="table-light">
+                          <tr>
+                            <th class="text-start">S.No</th>
+                            <th>Title</th>
+                            <th>Permission</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% getPermission.forEach(function(event, index) { %>
+                            <!-- Parent Row -->
+                            <tr>
+                              <td class="text-start fw-semibold">
+                                <%= index + 1 %>
+                              </td>
+                              <td class="text-start fw-semibold text-capitalize">
+                                <%= event.title %>
+                              </td>
+                              <td>
+                                <div class="form-check form-switch d-flex justify-content-center">
+                                  <!-- <input class="form-check-input toggle-parent" type="checkbox"
+                                    id="menu-<%= event._id %>" data-menu-id="<%= event._id %>"> -->
+
+                                  <input class="form-check-input toggle-parent" type="checkbox"
+                                    id="menu-<%= event._id %>" data-menu-id="<%= event._id %>"
+                                    data-id="<%= event._id %>" <%=selectedPermissions.includes(event._id.toString())
+                                    ? 'checked' : '' %>>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <!-- Submenu Table (Initially Hidden) -->
+                            <% if (event.submenu && event.submenu.length> 0) { %>
+                              <tr class="submenu-row submenu-<%= event._id %>" style="display: none;">
+                                <td colspan="3">
+                                  <div class="table-responsive p-3">
+                                    <table class="table table-bordered align-middle text-center mb-0">
+                                      <thead class="table-light">
+                                        <tr>
+                                          <th class="text-start">S.No</th>
+                                          <th>Submenu</th>
+                                          <th>Permission</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <% event.submenu.forEach(function(child, subIndex) { %>
+                                          <tr>
+                                            <td class="text-start fw-semibold">
+                                              <%= subIndex + 1 %>
+                                            </td>
+                                            <td class="text-start text-capitalize">
+                                              <%= child.title %>
+                                            </td>
+                                            <td>
+                                              <div class="form-check form-switch d-flex justify-content-center">
+                                                <!-- <input class="form-check-input submenu-checkbox menu-<%= event._id %>"
+                                                  type="checkbox" name="<%= child.name %>" value="1"> -->
+
+
+                                                <input class="form-check-input submenu-checkbox menu-<%= event._id %>"
+                                                  type="checkbox" name="<%= child.name %>" value="1"
+                                                  data-id="<%= child._id %>"
+                                                  <%=selectedPermissions.includes(child._id.toString()) ? 'checked' : ''
+                                                  %>>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <% }); %>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                              <% } %>
+
+                                <% }); %>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary " id="submitPermission">Save changes</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Permission</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </main>
+      <%- include ('../partials/scripts') -%>
+        <script src="<%=baseUrls.admin%>/public/assets/js/client.js"></script>
