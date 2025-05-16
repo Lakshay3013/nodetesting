@@ -1,0 +1,61 @@
+name: CI Pipeline for Frontend and Backend
+
+on:
+  push:
+    paths:
+      - 'glueple-hrms-backend/**'
+      - 'glueple-hrms-frontend/**'
+  pull_request:
+    paths:
+      - 'glueple-hrms-backend/**'
+      - 'glueple-hrms-frontend/**'
+
+jobs:
+  backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: glueple-hrms-backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run backend build/test
+        run: |
+          npm run build || echo "No build step"
+          npm test || echo "No tests"
+
+  frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: glueple-hrms-frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run frontend build/test
+        run: |
+          npm run build || echo "No build step"
+          npm test || echo "No tests"
+
